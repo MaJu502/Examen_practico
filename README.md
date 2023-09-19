@@ -1,6 +1,6 @@
 # Prototipo de Control de Empleados
 
-Este Prototipo es un sistema web diseñado para el control de empleados en una empresa. Permite gestionar la información de empleados y departamentos, incluyendo la creación, actualización y eliminación de registros.
+Este Prototipo es un sistema web diseñado para el control de empleados en una empresa bajo el patron MVC. Permite gestionar la información de empleados y departamentos, incluyendo la creación, actualización y eliminación de registros.
 
 ## Características
 
