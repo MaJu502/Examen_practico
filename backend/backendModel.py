@@ -59,43 +59,44 @@ class DataBaseModel:
 
     def actualizar_departamento(self, dept_id, nombre, description):
         try:
-            self.cursor.execute("UPDATE Departamento SET nombre = %s, description = %s WHERE dept_id = %s", (nombre, description, dept_id))
+            self.cursor.execute("UPDATE Departamento SET nombre = %s, description = %s WHERE dept_id LIKE %s", (nombre, description, dept_id))
             return True
         except Exception as e:
             return str(e)
 
     def actualizar_empleado(self, employee_id, firstname, lastname, birthday, department_id):
         try:
-            self.cursor.execute("UPDATE Empleado SET firstname = %s, lastname = %s, birthday = %s, department_id = %s WHERE employee_id = %s", (firstname, lastname, birthday, department_id, employee_id))
+            self.cursor.execute("UPDATE Empleado SET firstname = %s, lastname = %s, birthday = %s, department_id = %s WHERE employee_id LIKE %s", (firstname, lastname, birthday, department_id, employee_id))
             return True
         except Exception as e:
             return str(e)
 
     def eliminar_departamento(self, dept_id):
         try:
-            self.cursor.execute("DELETE FROM Departamento WHERE dept_id = %s", (dept_id,))
-            return True
+            self.cursor.execute("DELETE FROM Departamento WHERE dept_id LIKE %s", (dept_id,))
+            return self.listar_departamentos()
         except Exception as e:
             return str(e)
 
     def eliminar_empleado(self, employee_id):
         try:
-            self.cursor.execute("DELETE FROM Empleado WHERE employee_id = %s", (employee_id,))
+            self.cursor.execute("DELETE FROM Empleado WHERE employee_id LIKE %s", (employee_id,))
             return True
         except Exception as e:
             return str(e)
         
     def verif_empleado(self, employee_id):
         try:
-            self.cursor.execute("SELECT * FROM Empleado WHERE employee_id = %s", (employee_id,))
+            self.cursor.execute("SELECT * FROM Empleado WHERE employee_id LIKE %s", (employee_id,))
             return True
         except Exception as e:
             return str(e)
         
     def verif_departamento(self, dept_id):
         try:
-            self.cursor.execute("SELECT * FROM Departamento WHERE dept_id = %s", (dept_id,))
-            return True
+            self.cursor.execute("SELECT * FROM Departamento WHERE dept_id LIKE %s LIMIT 1", (dept_id,))
+            result = self.cursor.fetchone()
+            return result
         except Exception as e:
             return str(e)
         

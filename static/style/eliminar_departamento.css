@@ -1,0 +1,107 @@
+/* Estilos para el cuerpo (body) */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos para el contenedor del sidemenu (.sidenav) */
+.sidenav {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #3498db;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.sidenav a:hover {
+    background-color: #2980b9;
+}
+
+/* Estilos para el contenido (.content) */
+.content {
+    margin-left: 270px;
+    padding: 20px;
+    text-align: center;
+}
+
+.content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para el formulario */
+form {
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* Estilos para la tabla */
+.table-container {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilos para la tabla encabezado */
+thead {
+    background-color: #3498db;
+    color: #fff;
+}
+
+/* Estilos para las filas impares de la tabla */
+tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}

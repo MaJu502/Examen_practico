@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar Empleados</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/listar_departamentos.css') }}">
+    <title>Crear Departamento</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/crear_departamento.css') }}">
 </head>
 <body>
 
@@ -18,7 +18,19 @@
 </div>
 
 <div class="content">
-    <h1>Listado de Empleados</h1>
+    <h1>Crear Nuevo Departamento</h1>
+    <form action="/crear_departamento" method="post">
+        <label for="dept_id">ID del Departamento:</label>
+        <input type="text" id="dept_id" name="dept_id" required>
+        <br>
+        <label for="nombre">Nombre del Departamento:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <br>
+        <label for="description">Descripción del Departamento:</label>
+        <textarea id="description" name="description" rows="4"></textarea>
+        <br>
+        <input type="submit" value="Crear Departamento">
+    </form>
     <div class="table-container">
         <table>
             <thead>
@@ -39,6 +51,12 @@
             </tbody>
         </table>
     </div>
+    {% if mensaje %}
+    <script>
+        // Muestra una alerta con el mensaje
+        alert("{{ mensaje }}");
+    </script>
+    {% endif %}
 </div>
 
 </body>
