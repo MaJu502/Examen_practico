@@ -1,0 +1,36 @@
+/* Estilos para el cuerpo (body) */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Estilos para el contenedor de botones (.button-container) */
+.button-container {
+    text-align: center;
+}
+
+/* Estilos para los enlaces como botones */
+.button {
+    display: inline-block;
+    width: 200px;
+    height: 500px;
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 10px;
+    border: none;
+    border-radius: 50px; /* Hace que los botones sean redondos */
+    background-color: #3498db; /* Color de fondo normal */
+    color: #fff; /* Color de texto */
+    text-align: center;
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Efecto de transición al pasar el mouse */
+}
+
+/* Estilos para los botones cuando se pasa el mouse sobre ellos */
+.button:hover {
+    background-color: #2980b9; /* Cambia el color de fondo al pasar el mouse */
+}

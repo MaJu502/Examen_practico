@@ -1,0 +1,56 @@
+/* Estilos generales para la página */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+/* Estilos para el menú lateral (.sidenav) */
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #3498db; /* Color de fondo azul */
+    padding-top: 20px;
+    transition: width 0.3s; /* Efecto de transición en el ancho */
+}
+
+.sidenav a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff; /* Color de texto blanco */
+    display: block;
+    transition: background-color 0.3s; /* Efecto de transición al pasar el mouse */
+}
+
+.sidenav a:hover {
+    background-color: #2980b9; /* Cambia el color de fondo al pasar el mouse */
+}
+
+/* Estilos para el contenido principal (.content) */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+/* Estilos específicos para la página "Listar Empleados" */
+.content h1 {
+    font-size: 24px;
+    color: #333; /* Color de texto principal */
+}
+
+.content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.content ul li {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #555; /* Color de texto secundario */
+}

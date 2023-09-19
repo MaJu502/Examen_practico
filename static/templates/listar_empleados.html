@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Empleados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/listar_empleados.css') }}">
+</head>
+<body>
+
+<div class="sidenav">
+    <a href="#">Listar Empleados</a>
+    <a href="#">Añadir Nuevo Empleado</a>
+    <a href="#">Actualizar Información de Empleado</a>
+    <a href="#">Eliminar Empleado</a>
+</div>
+
+<div class="content">
+    <!-- Contenido específico de la página "Listar Empleados" -->
+    <h1>Listado de Empleados</h1>
+    <ul>
+        {% for departamento in departamentos %}
+            <li>ID: {{ departamento.dept_id }}</li>
+            <li>Nombre: {{ departamento.nombre }}</li>
+            <li>Descripción: {{ departamento.description }}</li>
+            <br>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 import psycopg2
-from empleado import Empleado
-from departamento import Departamento
+from backend.empleado import Empleado
+from backend.departamento import Departamento
 
 class DataBaseModel:
     def __init__(self):
@@ -73,3 +73,34 @@ class DataBaseModel:
             return True
         except Exception as e:
             return str(e)
+        
+    def verif_empleado(self, employee_id):
+        try:
+            self.cursor.execute("SELECT * FROM Empleado WHERE employee_id = %s", (employee_id,))
+            return True
+        except Exception as e:
+            return str(e)
+        
+    def verif_departamento(self, dept_id):
+        try:
+            self.cursor.execute("SELECT * FROM Departamento WHERE dept_id = %s", (dept_id,))
+            return True
+        except Exception as e:
+            return str(e)
+        
+    def get_next_employee_id(self):
+        try:
+            self.cursor.execute("SELECT MAX(employee_id) AS ultimo_id_agregado FROM Empleado;")
+            result = self.cursor.fetchone()
+            if result and result[0]:
+                ultimo_id = result[0]
+                ultimo_numero = int(ultimo_id.split('-')[1])
+                nuevo_numero = ultimo_numero + 1
+                nuevo_employee_id = f"EMP-{nuevo_numero:04d}"
+                return nuevo_employee_id
+            else:
+                # Si no hay registros en la tabla Empleado, comienza desde EMP-0001
+                return "EMP-0001"
+        except Exception as e:
+            return str(e)
+
