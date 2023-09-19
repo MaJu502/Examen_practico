@@ -21,42 +21,49 @@ Este Prototipo es un sistema web diseñado para el control de empleados en una e
 
 Siga estos pasos para configurar y ejecutar el proyecto en su entorno local:
 
-1. Clone este repositorio en su máquina:
+1. **Clone este repositorio en su máquina:**
 
     ```bash
     git clone https://github.com/tuusuario/proyecto-control-empleados.git
     cd proyecto-control-empleados
     ```
 
-    a. Cree un entorno virtual (recomendado) para el proyecto:
+2. **Cree un entorno virtual (recomendado) para el proyecto:**
 
-            ```bash
-            python -m venv venv
-            ```
-    b. Active el entorno virtual (en Windows):
+    ```bash
+    python -m venv venv
+    ```
 
-            ```bash
-            venv\Scripts\activate
-            ```
+3. **Active el entorno virtual (en Windows):**
+
+    ```bash
+    venv\Scripts\activate
+    ```
+
     O, en macOS/Linux:
 
-            ```bash
-            source venv/bin/activate
-            ```
-    c. Instale las dependencias del proyecto, incluyendo Flask y psycopg2:
+    ```bash
+    source venv/bin/activate
+    ```
 
-            ```bash
-            pip install flask
-            pip install psycopg2
-            ```
-    d. Configure la base de datos PostgreSQL con sus credenciales y detalles de conexión en el archivo backend/backendModel.py.
+4. **Instale las dependencias del proyecto, incluyendo Flask y psycopg2:**
 
-    e. Ejecute la aplicación Flask:
+    ```bash
+    pip install flask
+    pip install psycopg2
+    ```
 
-            ```bash
-           python app.py
-            ``
-    f. Abra su navegador y vaya a http://localhost:5000 para acceder a la aplicación.
+5. **Configure la base de datos PostgreSQL:**
+
+   - Edite el archivo `backend/backendModel.py` y configure las credenciales y detalles de conexión.
+
+6. **Ejecute la aplicación Flask:**
+
+    ```bash
+    python app.py
+    ```
+
+7. **Abra su navegador y vaya a http://localhost:5000 para acceder a la aplicación.**
 
 ## Uso
 - Navegue por la aplicación para listar, crear, actualizar y eliminar empleados y departamentos.
@@ -66,4 +73,19 @@ Siga estos pasos para configurar y ejecutar el proyecto en su entorno local:
 Si desea contribuir a este proyecto, abra un problema o envíe una solicitud de extracción. Estamos abiertos a mejoras y nuevas características.
 
 ## Licencia
-Este proyecto está bajo la Licencia MIT - consulte el archivo LICENSE para más detalles.
+Este proyecto está bajo la Licencia MIT. Consulte el archivo LICENSE para más detalles.
+
+## Requisitos del Sistema
+
+- Python 3.x
+- PostgreSQL 12.x
+
+## Estructura del Proyecto
+El proyecto está organizado de la siguiente manera:
+
+## Capturas de Pantalla
+![Alt text](/static/test_images/image.png)
+
+![Alt text](/static/test_images/image-1.png)
+
+![Alt text](/static/test_images/image-2.png)
