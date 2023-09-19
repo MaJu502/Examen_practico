@@ -3,7 +3,6 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
 }
 
 /* Estilos para el menú lateral (.sidenav) */
@@ -55,9 +54,9 @@ body {
     color: #555; /* Color de texto secundario */
 }
 
+/* Estilos para la tabla */
 .table-container {
-    max-height: 400px; /* Altura máxima de la tabla antes de que aparezca la barra de desplazamiento */
-    overflow-y: auto; /* Hace que la tabla sea scrollable verticalmente */
+    margin-top: 20px;
 }
 
 table {
@@ -65,12 +64,22 @@ table {
     border-collapse: collapse;
 }
 
-/* Estilos para las filas y celdas de la tabla */
 table, th, td {
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
 }
 
 th, td {
     padding: 8px;
     text-align: left;
+}
+
+/* Estilos para la tabla encabezado */
+thead {
+    background-color: #3498db;
+    color: #fff;
+}
+
+/* Estilos para las filas impares de la tabla */
+tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
 }

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar Empleados</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/listar_empleados.css') }}">
+    <title>Añadir Empleado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/crear_empleado.css') }}">
 </head>
 <body>
 
@@ -18,31 +18,52 @@
 </div>
 
 <div class="content">
-    <h1>Listado de Empleados</h1>
+    <h1>Añadir Nuevo Empleado</h1>
+    <form action="/crear_empleado" method="post">
+        <label for="firstname">Nombre:</label>
+        <input type="text" id="firstname" name="firstname" required>
+        <br>
+        <label for="lastname">Apellido:</label>
+        <input type="text" id="lastname" name="lastname" required>
+        <br>
+        <label for="birthday">Fecha de Nacimiento:</label>
+        <input type="date" id="birthday" name="birthday">
+        <br>
+        <label for="department_id">ID del Departamento:</label>
+        <input type="text" id="department_id" name="department_id" required>
+        <br>
+        <input type="submit" value="Crear Empleado">
+    </form>
     <div class="table-container">
         <table>
             <thead>
                 <tr>
                     <th>Employee ID</th>
-                    <th>Apellido</th>
                     <th>Nombre</th>
+                    <th>Apellido</th>
                     <th>Fecha de Nacimiento</th>
                     <th>Department ID</th>
                 </tr>
             </thead>
             <tbody>
-                {% for empleado in empleados %}
+                {% for empleado in departamentos %}
                     <tr>
                         <td>{{ empleado.employee_id }}</td>
-                        <td>{{ empleado.lastname }}</td>
                         <td>{{ empleado.firstname }}</td>
-                        <td>{{ empleado.department_id }}</td>
+                        <td>{{ empleado.lastname }}</td>
                         <td>{{ empleado.birthday }}</td>
+                        <td>{{ empleado.department_id }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+    {% if mensaje %}
+    <script>
+        // Muestra una alerta con el mensaje
+        alert("{{ mensaje }}");
+    </script>
+    {% endif %}
 </div>
 
 </body>

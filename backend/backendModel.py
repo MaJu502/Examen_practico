@@ -37,7 +37,6 @@ class DataBaseModel:
         self.cursor.execute("SELECT * FROM Empleado WHERE department_id LIKE '{}'".format(dep))
         empleados = []
         for row in self.cursor.fetchall():
-            print('-->',row)
             employee_id, firstname, lastname, birthday, department_id = row
             empleado = Empleado(employee_id, firstname, lastname, birthday, department_id)
             empleados.append(empleado)
@@ -50,9 +49,9 @@ class DataBaseModel:
         except Exception as e:
             return str(e)
 
-    def crear_empleado(self, firstname, lastname, birthday, department_id):
+    def crear_empleado(self, employee_id, firstname, lastname, birthday, department_id):
         try:
-            self.cursor.execute("INSERT INTO Empleado (firstname, lastname, birthday, department_id) VALUES (%s, %s, %s, %s)", (firstname, lastname, birthday, department_id))
+            self.cursor.execute("INSERT INTO Empleado (employee_id, firstname, lastname, birthday, department_id) VALUES (%s, %s, %s, %s, %s)", (employee_id, firstname, lastname, birthday, department_id))
             return True
         except Exception as e:
             return str(e)
@@ -81,16 +80,24 @@ class DataBaseModel:
     def eliminar_empleado(self, employee_id):
         try:
             self.cursor.execute("DELETE FROM Empleado WHERE employee_id LIKE %s", (employee_id,))
-            return True
+            return self.listar_empleados()
         except Exception as e:
             return str(e)
         
     def verif_empleado(self, employee_id):
         try:
             self.cursor.execute("SELECT * FROM Empleado WHERE employee_id LIKE %s", (employee_id,))
-            return True
+
+            empleados = []
+            for row in self.cursor.fetchall():
+                employee_id, firstname, lastname, birthday, department_id = row
+                empleado = Empleado(employee_id, firstname, lastname, birthday, department_id)
+                empleados.append(empleado)
+            return empleados
         except Exception as e:
             return str(e)
+        
+    
         
     def verif_departamento(self, dept_id):
         try:

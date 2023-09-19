@@ -32,13 +32,12 @@ def listar_departamentos():
 def listar_empleados_departamento():
     if request.method == 'POST':
         dept_id = request.form['dept_id']
-        # Realiza el query para obtener los empleados del departamento con dept_id
-        empleados = model.listar_empleados_departamento(dept_id)  # Asegúrate de tener esta función en tu modelo
+        empleados = model.listar_empleados_departamento(dept_id)
 
         return render_template('listar_empleados_departamento.html', empleados=empleados)
 
     # Si la solicitud no es un POST, simplemente muestra la página sin resultados
-    return render_template('listar_empleados_departamento.html', departamentos=[])
+    return render_template('listar_empleados_departamento.html', empleados=[])
 
 def obtener_numero_empleado_id(empleado):
     return int(empleado.employee_id.split('-')[1])
@@ -48,6 +47,16 @@ def listar_empleados():
     empleados = model.listar_empleados()
     lista_empleados_ordenados = sorted(empleados, key=obtener_numero_empleado_id)
     return render_template('listar_empleados.html', empleados=lista_empleados_ordenados)
+
+@app.route('/buscar_empleado', methods=['GET', 'POST'])
+def buscar_empleado():
+    if request.method == 'POST':
+        employee_id = request.form['employee_id']
+        empleados = model.verif_empleado(employee_id)
+        return render_template('buscar_empleado.html', empleados=empleados)
+
+    # Si la solicitud no es un POST, simplemente muestra la página sin resultados
+    return render_template('buscar_empleado.html', empleados=None)
 
 @app.route('/crear_departamento', methods=['GET', 'POST'])
 def crear_departamento():
@@ -99,30 +108,59 @@ def crear_departamento():
     # Si la solicitud no es un POST, simplemente muestra la página sin resultados
     return render_template('crear_departamento.html', departamentos=lista_departamentos_ordenados, mensaje=None)
         
-@app.route('/crear_empleado', methods=['POST'])
+@app.route('/crear_empleado', methods=['GET', 'POST'])
 def crear_empleado():
+    empleados = model.listar_empleados()
+    lista_empleados_ordenados = sorted(empleados, key=obtener_numero_empleado_id)
+
     if request.method == 'POST':
         firstname = request.form['firstname']
         lastname = request.form['lastname']
         birthday = request.form['birthday']
         department_id = request.form['department_id']
         employee_id = model.get_next_employee_id()
-        
+
+        # Si no se agrega description
+        if birthday == '':
+            # Verifica si el empleado ya existe
+            if model.verif_empleado(employee_id):
+                alertmessage = "El empleado ya existe."
+                return render_template('crear_empleado.html', departamentos=lista_empleados_ordenados, mensaje=alertmessage)
+
+            resultado = model.crear_empleado(employee_id, firstname, lastname, None, department_id)
+            print('res>', resultado)
+
+            if resultado is True:
+                alertmessage = "Empleado creado con éxito."
+
+                empleados = model.listar_empleados()
+                lista_empleados_ordenados = sorted(empleados, key=obtener_numero_empleado_id)
+
+                return render_template('crear_empleado.html', departamentos=lista_empleados_ordenados, mensaje=None)
+            else:
+                alertmessage = "Error al crear el empleado: " + resultado
+                return render_template('crear_empleado.html', departamentos=lista_empleados_ordenados, mensaje=None)
 
         # Verifica si el empleado ya existe
         if model.verif_empleado(employee_id):
             alertmessage = "El empleado ya existe."
-            return redirect(url_for("/crear_empleado"))
+            return render_template('crear_empleado.html', departamentos=lista_empleados_ordenados, mensaje=alertmessage)
 
-        resultado = model.crear_empleado(firstname, lastname, birthday, department_id)
+        resultado = model.crear_empleado(employee_id, firstname, lastname, birthday, department_id)
+        print('res>', resultado)
         if resultado is True:
             alertmessage = "Empleado creado con éxito."
-            return redirect(url_for("/crear_empleado"))
+
+            empleados = model.listar_empleados()
+            lista_empleados_ordenados = sorted(empleados, key=obtener_numero_empleado_id)
+
+            return render_template('crear_empleado.html', departamentos=lista_empleados_ordenados, mensaje=None)
         else:
             alertmessage = "Error al crear el empleado: " + resultado
-            return redirect(url_for("/crear_empleado"))
+            return render_template('crear_empleado.html', departamentos=lista_empleados_ordenados, mensaje=None)
     
-
+    # Si la solicitud no es un POST, simplemente muestra la página sin resultados
+    return render_template('crear_empleado.html', departamentos=lista_empleados_ordenados, mensaje=None)
 
 @app.route('/actualizar_departamento', methods=['GET', 'POST'])
 def actualizar_departamento():
@@ -168,14 +206,18 @@ def actualizar_empleado():
         firstname = request.form['firstname']
         lastname = request.form['lastname']
         birthday = request.form['birthday']
-        department_id = request.form['department_id']
+        department_id = request.form['department_id'] 
         resultado = model.actualizar_empleado(employee_id, firstname, lastname, birthday, department_id)
         if resultado is True:
-            alertmessage = "Empleado actualizado con éxito."
-            return redirect(url_for("/actualizar_empleado"))
+            empleados = model.verif_empleado(employee_id)
+
+            return render_template('actualizar_empleado.html', empleados=empleados, mensaje=None)
         else:
             alertmessage = "Error al actualizar el empleado: " + resultado
-            return redirect(url_for("/actualizar_empleado"))
+            return render_template('actualizar_empleado.html', empleados=None, mensaje=alertmessage)
+        
+    # Si la solicitud no es un POST, simplemente muestra la página sin resultados
+    return render_template('actualizar_empleado.html', empleados=None, mensaje=None)
         
 @app.route('/eliminar_departamento', methods=['GET','POST'])
 def eliminar_departamento():
@@ -196,6 +238,26 @@ def eliminar_departamento():
 
     # Si la solicitud no es un POST, simplemente muestra la página sin resultados
     return render_template('eliminar_departamento.html', departamentos=lista_departamentos_ordenados, mensaje=None)
+
+@app.route('/eliminar_empleado', methods=['GET','POST'])
+def eliminar_empleado():
+    empleados = model.listar_empleados()
+    lista_empleados_ordenados = sorted(empleados, key=obtener_numero_empleado_id)
+    
+    if request.method == 'POST':
+        employee_id = request.form['employee_id']
+        response_eliminar = model.eliminar_empleado(employee_id)
+
+        if type(response_eliminar) == 'bool':
+            alertmessage = "Error al eliminar el empleado" + employee_id
+            return render_template('eliminar_empleado.html', empleados=lista_empleados_ordenados, mensaje=alertmessage)
+
+
+        lista_empleados_ordenados = sorted(response_eliminar, key=obtener_numero_empleado_id)
+        return render_template('eliminar_empleado.html', empleados=lista_empleados_ordenados, mensaje=None)
+
+    # Si la solicitud no es un POST, simplemente muestra la página sin resultados
+    return render_template('eliminar_empleado.html', empleados=lista_empleados_ordenados, mensaje=None)
 
 
 
