@@ -38,21 +38,17 @@
         <table>
             <thead>
                 <tr>
-                    <th>Employee ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Fecha de Nacimiento</th>
                     <th>Department ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
                 </tr>
             </thead>
             <tbody>
-                {% for empleado in departamentos %}
+                {% for dept in departamentos %}
                     <tr>
-                        <td>{{ empleado.employee_id }}</td>
-                        <td>{{ empleado.firstname }}</td>
-                        <td>{{ empleado.lastname }}</td>
-                        <td>{{ empleado.birthday }}</td>
-                        <td>{{ empleado.department_id }}</td>
+                        <td>{{ dept.dept_id }}</td>
+                        <td>{{ dept.nombre }}</td>
+                        <td>{{ dept.description }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
