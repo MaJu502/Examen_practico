@@ -1,14 +1,9 @@
-/* Estilos para el cuerpo (body) */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
 }
 
-/* Estilos para el contenedor del sidemenu (.sidenav) */
 .sidenav {
     width: 250px;
     position: fixed;
@@ -32,7 +27,6 @@ body {
     background-color: #2980b9;
 }
 
-/* Estilos para el contenido (.content) */
 .content {
     margin-left: 270px;
     padding: 20px;
@@ -44,7 +38,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Estilos para el formulario */
 form {
     text-align: left;
 }
@@ -76,7 +69,6 @@ input[type="submit"]:hover {
     background-color: #2980b9;
 }
 
-/* Estilos para la tabla */
 .table-container {
     margin-top: 20px;
 }
@@ -86,22 +78,68 @@ table {
     border-collapse: collapse;
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 1px solid #ccc;
 }
 
-th, td {
+th,
+td {
     padding: 8px;
     text-align: left;
 }
 
-/* Estilos para la tabla encabezado */
 thead {
     background-color: #3498db;
     color: #fff;
 }
 
-/* Estilos para las filas impares de la tabla */
 tbody tr:nth-child(odd) {
     background-color: #f2f2f2;
+}
+
+
+.top-bar {
+    background-color: #084066;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.top-bar .top-bar-icons {
+    display: flex;
+    align-items: center;
+}
+
+.top-bar .top-bar-icons a {
+    margin-left: 20px;
+}
+
+.profile-bubble {
+    width: 40px;
+    height: 40px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: width 0.3s;
+    overflow: hidden;
+    margin-left: 20px;
+}
+
+.profile-picture {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.profile-bubble:hover {
+    background-color: #282f34;
 }

@@ -2,8 +2,8 @@ from backend.backendModel import DataBaseModel
 from flask import *
 
 app = Flask(__name__, template_folder='static/templates', static_url_path='/static')
-app.secret_key = "Marco_Jurado_Servir"
-app.config["EXPLAIN_TEMPLATE_LOADING"] = True
+app.secret_key = 'Marco_Jurado_Servir'
+app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
 model = DataBaseModel()
 
@@ -72,12 +72,12 @@ def crear_departamento():
         if description == '':
             # Verifica si el departamento ya existe
             if model.verif_departamento(dept_id):
-                alertmessage ="El departamento ya existe."
+                alertmessage ='El departamento ya existe.'
                 return render_template('crear_departamento.html', departamentos=lista_departamentos_ordenados, mensaje=alertmessage)
 
             resultado = model.crear_departamento(dept_id, nombre, None)
             if resultado is True:
-                alertmessage ="Departamento creado con éxito."
+                alertmessage ='Departamento creado con éxito.'
 
                 departamentos = model.listar_departamentos()
                 lista_departamentos_ordenados = sorted(departamentos, key=obtener_numero_departamento_id)
@@ -85,24 +85,24 @@ def crear_departamento():
                 return render_template('crear_departamento.html', departamentos=lista_departamentos_ordenados, mensaje=None)
 
             else:
-                alertmessage ="Error al crear el departamento: " + resultado
+                alertmessage ='Error al crear el departamento: ' + resultado
                 return render_template('crear_departamento.html', departamentos=lista_departamentos_ordenados, mensaje=alertmessage)
 
         # Verifica si el departamento ya existe
         if model.verif_departamento(dept_id):
-            alertmessage ="El departamento ya existe."
+            alertmessage ='El departamento ya existe.'
             return render_template('crear_departamento.html', departamentos=lista_departamentos_ordenados, mensaje=alertmessage)
 
         resultado = model.crear_departamento(dept_id, nombre, description)
         if resultado is True:
-            alertmessage ="Departamento creado con éxito."
+            alertmessage ='Departamento creado con éxito.'
 
             departamentos = model.listar_departamentos()
             lista_departamentos_ordenados = sorted(departamentos, key=obtener_numero_departamento_id)
 
             return render_template('crear_departamento.html', departamentos=lista_departamentos_ordenados, mensaje=None)
         else:
-            alertmessage ="Error al crear el departamento: " + resultado
+            alertmessage ='Error al crear el departamento: ' + resultado
             return render_template('crear_departamento.html', departamentos=lista_departamentos_ordenados, mensaje=alertmessage)
     
     # Si la solicitud no es un POST, simplemente muestra la página sin resultados
@@ -124,39 +124,39 @@ def crear_empleado():
         if birthday == '':
             # Verifica si el empleado ya existe
             if model.verif_empleado(employee_id):
-                alertmessage = "El empleado ya existe."
+                alertmessage = 'El empleado ya existe.'
                 return render_template('crear_empleado.html', departamentos=lista_departamentos_ordenados, mensaje=alertmessage)
 
             resultado = model.crear_empleado(employee_id, firstname, lastname, None, department_id)
             print('res>', resultado)
 
             if resultado is True:
-                alertmessage = "Empleado creado con éxito."
+                alertmessage = 'Empleado creado con éxito.'
 
                 departamentos = model.listar_departamentos()
                 lista_departamentos_ordenados = sorted(departamentos, key=obtener_numero_departamento_id)
 
                 return render_template('crear_empleado.html', departamentos=lista_departamentos_ordenados, mensaje=None)
             else:
-                alertmessage = "Error al crear el empleado: " + resultado
+                alertmessage = 'Error al crear el empleado: ' + resultado
                 return render_template('crear_empleado.html', departamentos=lista_departamentos_ordenados, mensaje=None)
 
         # Verifica si el empleado ya existe
         if model.verif_empleado(employee_id):
-            alertmessage = "El empleado ya existe."
+            alertmessage = 'El empleado ya existe.'
             return render_template('crear_empleado.html', departamentos=lista_departamentos_ordenados, mensaje=alertmessage)
 
         resultado = model.crear_empleado(employee_id, firstname, lastname, birthday, department_id)
         print('res>', resultado)
         if resultado is True:
-            alertmessage = "Empleado creado con éxito."
+            alertmessage = 'Empleado creado con éxito.'
 
             departamentos = model.listar_departamentos()
             lista_departamentos_ordenados = sorted(departamentos, key=obtener_numero_departamento_id)
 
             return render_template('crear_empleado.html', departamentos=lista_departamentos_ordenados, mensaje=None)
         else:
-            alertmessage = "Error al crear el empleado: " + resultado
+            alertmessage = 'Error al crear el empleado: ' + resultado
             return render_template('crear_empleado.html', departamentos=lista_departamentos_ordenados, mensaje=None)
     
     # Si la solicitud no es un POST, simplemente muestra la página sin resultados
@@ -180,7 +180,7 @@ def actualizar_departamento():
                     lista_departamentos_ordenados = sorted(departamentos, key=obtener_numero_departamento_id)
                     return render_template('actualizar_departamento.html', mensaje=None, departamento=departamentos)
                 else:
-                    alertmessage = "Error al actualizar el departamento: " + resultado
+                    alertmessage = 'Error al actualizar el departamento: ' + resultado
                     return render_template('actualizar_departamento.html', mensaje=alertmessage, departamento=lista_departamentos_ordenados)
 
             # Si hay descripcion del departamento
@@ -190,10 +190,10 @@ def actualizar_departamento():
                 lista_departamentos_ordenados = sorted(departamentos, key=obtener_numero_departamento_id)
                 return render_template('actualizar_departamento.html', mensaje=None, departamento=departamentos)
             else:
-                alertmessage = "Error al actualizar el departamento: " + resultado
+                alertmessage = 'Error al actualizar el departamento: ' + resultado
                 return render_template('actualizar_departamento.html', mensaje=alertmessage, departamento=lista_departamentos_ordenados)
             
-        alertmessage ="El departamento que desea modificar no existe."
+        alertmessage ='El departamento que desea modificar no existe.'
         return render_template('actualizar_departamento.html', mensaje=alertmessage, departamento=lista_departamentos_ordenados)
 
         
@@ -213,7 +213,7 @@ def actualizar_empleado():
 
             return render_template('actualizar_empleado.html', empleados=empleados, mensaje=None)
         else:
-            alertmessage = "Error al actualizar el empleado: " + resultado
+            alertmessage = 'Error al actualizar el empleado: ' + resultado
             return render_template('actualizar_empleado.html', empleados=None, mensaje=alertmessage)
         
     # Si la solicitud no es un POST, simplemente muestra la página sin resultados
@@ -229,7 +229,7 @@ def eliminar_departamento():
         response_eliminar = model.eliminar_departamento(dept_id)
 
         if type(response_eliminar) == 'bool':
-            alertmessage = "Error al eliminar el departamento" + dept_id
+            alertmessage = 'Error al eliminar el departamento' + dept_id
             return render_template('eliminar_departamento.html', departamentos=lista_departamentos_ordenados, mensaje=alertmessage)
 
 
@@ -249,7 +249,7 @@ def eliminar_empleado():
         response_eliminar = model.eliminar_empleado(employee_id)
 
         if type(response_eliminar) == 'bool':
-            alertmessage = "Error al eliminar el empleado" + employee_id
+            alertmessage = 'Error al eliminar el empleado' + employee_id
             return render_template('eliminar_empleado.html', empleados=lista_empleados_ordenados, mensaje=alertmessage)
 
 

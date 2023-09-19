@@ -1,43 +1,60 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar Empleado</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style/eliminar_empleado.css') }}">
 </head>
+
 <body>
 
-<div class="sidenav">
-    <a href="/">Regresar</a>
-    <a href="/listar_empleados">Listar Empleados</a>
-    <a href="/buscar_empleado">Buscar un Empleado</a>
-    <a href="/crear_empleado">Añadir Nuevo Empleado</a>
-    <a href="/actualizar_empleado">Actualizar Información de Empleado</a>
-    <a href="/eliminar_empleado">Eliminar Empleado</a>
-</div>
+    <div class="sidenav">
+        <a href="/">Regresar</a>
+        <a href="/listar_empleados">Listar Empleados</a>
+        <a href="/buscar_empleado">Buscar un Empleado</a>
+        <a href="/crear_empleado">Añadir Nuevo Empleado</a>
+        <a href="/actualizar_empleado">Actualizar Información de Empleado</a>
+        <a href="/eliminar_empleado">Eliminar Empleado</a>
+    </div>
 
-<div class="content">
-    <h1>Eliminar Empleado</h1>
-    <form action="/eliminar_empleado" method="post">
-        <label for="employee_id">ID del Empleado a Eliminar:</label>
-        <input type="text" id="employee_id" name="employee_id" required>
-        <br>
-        <input type="submit" value="Eliminar Empleado">
-    </form>
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Employee ID</th>
-                    <th>Apellido</th>
-                    <th>Nombre</th>
-                    <th>Fecha de Nacimiento</th>
-                    <th>Department ID</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for empleado in empleados %}
+    <div class="top-bar">
+        <div class="brand">Prototipo Manejo de Empleados</div>
+        <div class="top-bar-icons">
+            <div class="profile-bubble">
+                <img src="{{ url_for('static', filename='test_images/sample_settings.jpg') }}" alt="Settings"
+                    class="profile-picture">
+            </div>
+            <div class="profile-bubble">
+                <img src="{{ url_for('static', filename='test_images/sample_user_profile.jpg') }}"
+                    alt="Imagen de Perfil" class="profile-picture">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Eliminar Empleado</h1>
+        <form action="/eliminar_empleado" method="post">
+            <label for="employee_id">ID del Empleado a Eliminar:</label>
+            <input type="text" id="employee_id" name="employee_id" required>
+            <br>
+            <input type="submit" value="Eliminar Empleado">
+        </form>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Apellido</th>
+                        <th>Nombre</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Department ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for empleado in empleados %}
                     <tr>
                         <td>{{ empleado.employee_id }}</td>
                         <td>{{ empleado.lastname }}</td>
@@ -45,17 +62,18 @@
                         <td>{{ empleado.department_id }}</td>
                         <td>{{ empleado.birthday }}</td>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% if mensaje %}
+        <script>
+            // Muestra una alerta con el mensaje
+            alert("{{ mensaje }}");
+        </script>
+        {% endif %}
     </div>
-    {% if mensaje %}
-    <script>
-        // Muestra una alerta con el mensaje
-        alert("{{ mensaje }}");
-    </script>
-    {% endif %}
-</div>
 
 </body>
+
 </html>

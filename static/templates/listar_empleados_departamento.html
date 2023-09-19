@@ -1,42 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar Empleados</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/listar_departamentos.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/listar_empleados_departamento.css') }}">
 </head>
+
 <body>
 
-<div class="sidenav">
-    <a href="/">Regresar</a>
-    <a href="/listar_departamentos">Listar Departamentos</a>
-    <a href="/listar_empleados_departamento">Empleados Por Departamentos</a>
-    <a href="/crear_departamento">Añadir Nuevo Departamento</a>
-    <a href="/actualizar_departamento">Actualizar Información de Departamento</a>
-    <a href="/eliminar_departamento">Eliminar Departamento</a>
-</div>
+    <div class="sidenav">
+        <a href="/">Regresar</a>
+        <a href="/listar_departamentos">Listar Departamentos</a>
+        <a href="/listar_empleados_departamento">Empleados Por Departamentos</a>
+        <a href="/crear_departamento">Añadir Nuevo Departamento</a>
+        <a href="/actualizar_departamento">Actualizar Información de Departamento</a>
+        <a href="/eliminar_departamento">Eliminar Departamento</a>
+    </div>
 
-<div class="content">
-    <h1>Listado de Empleados Por Departamento</h1>
-    <form action="/listar_empleados_departamento" method="post">
-        <label for="dept_id">Ingrese el ID del Departamento:</label>
-        <input type="text" id="dept_id" name="dept_id">
-        <input type="submit" value="Buscar">
-    </form>
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Employee ID</th>
-                    <th>Apellido</th>
-                    <th>Nombre</th>
-                    <th>Fecha de Nacimiento</th>
-                    <th>Department ID</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for empleado in empleados %}
+    <div class="top-bar">
+        <div class="brand">Prototipo Manejo de Empleados</div>
+        <div class="top-bar-icons">
+            <div class="profile-bubble">
+                <img src="{{ url_for('static', filename='test_images/sample_settings.jpg') }}" alt="Settings"
+                    class="profile-picture">
+            </div>
+            <div class="profile-bubble">
+                <img src="{{ url_for('static', filename='test_images/sample_user_profile.jpg') }}"
+                    alt="Imagen de Perfil" class="profile-picture">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Listado de Empleados Por Departamento</h1>
+        <form action="/listar_empleados_departamento" method="post">
+            <label for="dept_id">Ingrese el ID del Departamento:</label>
+            <input type="text" id="dept_id" name="dept_id">
+            <input type="submit" value="Buscar">
+        </form>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Apellido</th>
+                        <th>Nombre</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Department ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for empleado in empleados %}
                     <tr>
                         <td>{{ empleado.employee_id }}</td>
                         <td>{{ empleado.lastname }}</td>
@@ -44,11 +61,12 @@
                         <td>{{ empleado.department_id }}</td>
                         <td>{{ empleado.birthday }}</td>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
 </body>
+
 </html>

@@ -1,11 +1,9 @@
-/* Estilos generales para la página */
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
 }
 
-/* Estilos para el menú lateral (.sidenav) */
 .sidenav {
     height: 100%;
     width: 250px;
@@ -13,26 +11,69 @@ body {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #3498db; /* Color de fondo azul */
+    background-color: #3498db;
     padding-top: 20px;
-    transition: width 0.3s; /* Efecto de transición en el ancho */
+    transition: width 0.3s;
 }
 
 .sidenav a {
     padding: 15px 25px;
     text-decoration: none;
     font-size: 18px;
-    color: #fff; /* Color de texto blanco */
+    color: #fff;
     display: block;
-    transition: background-color 0.3s; /* Efecto de transición al pasar el mouse */
+    transition: background-color 0.3s;
 }
 
 .sidenav a:hover {
-    background-color: #2980b9; /* Cambia el color de fondo al pasar el mouse */
+    background-color: #2980b9;
 }
 
-/* Estilos para el contenido principal (.content) */
 .content {
     margin-left: 250px;
     padding: 20px;
+}
+
+.top-bar {
+    background-color: #084066;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.top-bar .top-bar-icons {
+    display: flex;
+    align-items: center;
+}
+
+.top-bar .top-bar-icons a {
+    margin-left: 20px;
+}
+
+.profile-bubble {
+    width: 40px;
+    height: 40px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: width 0.3s;
+    overflow: hidden;
+    margin-left: 20px;
+}
+
+.profile-picture {
+    width: 100%;
+        height: auto;
+        border-radius: 50%;
+    }
+
+.profile-bubble:hover {
+    background-color: #282f34;
 }

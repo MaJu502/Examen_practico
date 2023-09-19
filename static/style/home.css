@@ -1,36 +1,105 @@
-/* Estilos para el cuerpo (body) */
 body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.top-bar {
+    background-color: #084066;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.top-bar .top-bar-icons {
+    display: flex;
+    align-items: center;
+}
+
+.top-bar .top-bar-icons a {
+    margin-left: 20px;
+}
+
+/* Estilos para la burbuja de imagen de perfil */
+.profile-bubble {
+    width: 40px;
+    height: 40px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-/* Estilos para el contenedor de botones (.button-container) */
-.button-container {
-    text-align: center;
-}
-
-/* Estilos para los enlaces como botones */
-.button {
-    display: inline-block;
-    width: 200px;
-    height: 500px;
-    padding: 10px 20px;
-    font-size: 18px;
-    margin: 10px;
-    border: none;
-    border-radius: 50px; /* Hace que los botones sean redondos */
-    background-color: #3498db; /* Color de fondo normal */
-    color: #fff; /* Color de texto */
-    text-align: center;
-    text-decoration: none; /* Elimina el subrayado de los enlaces */
     cursor: pointer;
-    transition: background-color 0.3s; /* Efecto de transición al pasar el mouse */
+    transition: width 0.3s;
+    overflow: hidden;
+    margin-left: 20px;
 }
 
-/* Estilos para los botones cuando se pasa el mouse sobre ellos */
+.profile-picture {
+    width: 100%;
+    /* Ancho de la imagen de perfil */
+    height: auto;
+    /* Altura automática para proporción */
+    border-radius: 50%;
+    /* Forma redonda */
+}
+
+.profile-bubble:hover {
+    background-color: #282f34;
+}
+
+/* Estilos para el menú lateral (.sidenav) */
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #3498db;
+    padding-top: 20px;
+    transition: width 0.3s;
+}
+
+.sidenav a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.sidenav a:hover {
+    background-color: #2980b9;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px 0;
+    text-align: center;
+    background-color: #1250a7;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
 .button:hover {
-    background-color: #2980b9; /* Cambia el color de fondo al pasar el mouse */
+    background-color: #089afb;
 }

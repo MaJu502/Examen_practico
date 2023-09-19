@@ -1,45 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar Empleados</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style/listar_departamentos.css') }}">
 </head>
+
 <body>
 
-<div class="sidenav">
-    <a href="/">Regresar</a>
-    <a href="/listar_departamentos">Listar Departamentos</a>
-    <a href="/listar_empleados_departamento">Empleados Por Departamentos</a>
-    <a href="/crear_departamento">Añadir Nuevo Departamento</a>
-    <a href="/actualizar_departamento">Actualizar Información de Departamento</a>
-    <a href="/eliminar_departamento">Eliminar Departamento</a>
-</div>
+    <div class="sidenav">
+        <a href="/">Regresar</a>
+        <a href="/listar_departamentos">Listar Departamentos</a>
+        <a href="/listar_empleados_departamento">Empleados Por Departamentos</a>
+        <a href="/crear_departamento">Añadir Nuevo Departamento</a>
+        <a href="/actualizar_departamento">Actualizar Información de Departamento</a>
+        <a href="/eliminar_departamento">Eliminar Departamento</a>
+    </div>
 
-<div class="content">
-    <h1>Listado de Empleados</h1>
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Department ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for dept in departamentos %}
+    <div class="top-bar">
+        <div class="brand">Prototipo Manejo de Empleados</div>
+        <div class="top-bar-icons">
+            <div class="profile-bubble">
+                <img src="{{ url_for('static', filename='test_images/sample_settings.jpg') }}" alt="Settings"
+                    class="profile-picture">
+            </div>
+            <div class="profile-bubble">
+                <img src="{{ url_for('static', filename='test_images/sample_user_profile.jpg') }}"
+                    alt="Imagen de Perfil" class="profile-picture">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Listado de Empleados</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Department ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dept in departamentos %}
                     <tr>
                         <td>{{ dept.dept_id }}</td>
                         <td>{{ dept.nombre }}</td>
                         <td>{{ dept.description }}</td>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
 </body>
+
 </html>

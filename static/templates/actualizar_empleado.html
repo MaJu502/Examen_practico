@@ -1,47 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar Información de Empleado</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style/actualizar_empleado.css') }}">
 </head>
+
 <body>
 
-<div class="sidenav">
-    <a href="/">Regresar</a>
-    <a href="/listar_empleados">Listar Empleados</a>
-    <a href="/buscar_empleado">Buscar un Empleado</a>
-    <a href="/crear_empleado">Añadir Nuevo Empleado</a>
-    <a href="/actualizar_empleado">Actualizar Información de Empleado</a>
-    <a href="/eliminar_empleado">Eliminar Empleado</a>
-</div>
+    <div class="sidenav">
+        <a href="/">Regresar</a>
+        <a href="/listar_empleados">Listar Empleados</a>
+        <a href="/buscar_empleado">Buscar un Empleado</a>
+        <a href="/crear_empleado">Añadir Nuevo Empleado</a>
+        <a href="/actualizar_empleado">Actualizar Información de Empleado</a>
+        <a href="/eliminar_empleado">Eliminar Empleado</a>
+    </div>
 
-<div class="content">
-    <h1>Actualizar Información de Empleado</h1>
-    <form action="/actualizar_empleado" method="post">
-        <label for="employee_id">ID del Empleado:</label>
-        <input type="text" id="employee_id" name="employee_id" required>
-        <br>
-        <label for="firstname">Nombre:</label>
-        <input type="text" id="firstname" name="firstname" required>
-        <br>
-        <label for="lastname">Apellido:</label>
-        <input type="text" id="lastname" name="lastname" required>
-        <br>
-        <label for="birthday">Fecha de Nacimiento:</label>
-        <input type="date" id="birthday" name="birthday">
-        <br>
-        <label for="department_id">ID del Departamento:</label>
-        <input type="text" id="department_id" name="department_id" required>
-        <br>
-        <input type="submit" value="Actualizar Empleado">
-    </form>
-    <div class="search-results">
-        {% if mensaje %}
+    <div class="top-bar">
+        <div class="brand">Prototipo Manejo de Empleados</div>
+        <div class="top-bar-icons">
+            <div class="profile-bubble">
+                <img src="{{ url_for('static', filename='test_images/sample_settings.jpg') }}" alt="Settings"
+                    class="profile-picture">
+            </div>
+            <div class="profile-bubble">
+                <img src="{{ url_for('static', filename='test_images/sample_user_profile.jpg') }}"
+                    alt="Imagen de Perfil" class="profile-picture">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Actualizar Información de Empleado</h1>
+        <form action="/actualizar_empleado" method="post">
+            <label for="employee_id">ID del Empleado:</label>
+            <input type="text" id="employee_id" name="employee_id" required>
+            <br>
+            <label for="firstname">Nombre:</label>
+            <input type="text" id="firstname" name="firstname" required>
+            <br>
+            <label for="lastname">Apellido:</label>
+            <input type="text" id="lastname" name="lastname" required>
+            <br>
+            <br>
+            <label for="birthday">Fecha de Nacimiento:</label>
+            <input type="date" id="birthday" name="birthday">
+            <br>
+            <br>
+            <label for="department_id">ID del Departamento:</label>
+            <input type="text" id="department_id" name="department_id" required>
+            <br>
+            <input type="submit" value="Actualizar Empleado">
+        </form>
+        <div class="search-results">
+            {% if mensaje %}
             <p class="alert">{{ mensaje }}</p>
-        {% endif %}
-        {% if empleados %}
+            {% endif %}
+            {% if empleados %}
             <h2>Información actualizada:</h2>
             <table>
                 <thead>
@@ -55,19 +74,20 @@
                 </thead>
                 <tbody>
                     {% for empleado in empleados %}
-                        <tr>
-                            <td>{{ empleado.employee_id }}</td>
-                            <td>{{ empleado.lastname }}</td>
-                            <td>{{ empleado.firstname }}</td>
-                            <td>{{ empleado.department_id }}</td>
-                            <td>{{ empleado.birthday }}</td>
-                        </tr>
+                    <tr>
+                        <td>{{ empleado.employee_id }}</td>
+                        <td>{{ empleado.lastname }}</td>
+                        <td>{{ empleado.firstname }}</td>
+                        <td>{{ empleado.department_id }}</td>
+                        <td>{{ empleado.birthday }}</td>
+                    </tr>
                     {% endfor %}
                 </tbody>
             </table>
-        {% endif %}
+            {% endif %}
+        </div>
     </div>
-</div>
 
 </body>
+
 </html>

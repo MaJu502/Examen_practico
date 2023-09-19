@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manejo de Empleados y Departamentos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style/home.css') }}">
 </head>
+
 <body>
-    <div class="button-container">
-        <a href="/manage_employees" class="button">Manejar Empleados</a>
-        <a href="/manage_departments" class="button">Manejar Departamentos</a>
+    <div class="top-bar">
+        <div class="brand">Prototipo Manejo de Empleados</div>
+        <div class="top-bar-icons">
+            <div class="profile-bubble">
+                <img src="{{ url_for('static', filename='test_images/sample_settings.jpg') }}" alt="Settings"
+                    class="profile-picture">
+            </div>
+            <div class="profile-bubble">
+                <img src="{{ url_for('static', filename='test_images/sample_user_profile.jpg') }}"
+                    alt="Imagen de Perfil" class="profile-picture">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="sidenav">
+        <a href="#">Ajustes</a>
+        <a href="#">Soporte</a>
+        <a href="#">Log out</a>
+    </div>
+
+    <div class="content">
+        <h1>Bienvenido a Prototipo Manejo de Empleados</h1>
+        <div class="button-container">
+            <a href="/manage_employees" class="button">Manejar Empleados</a>
+            <a href="/manage_departments" class="button">Manejar Departamentos</a>
+        </div>
     </div>
 </body>
+
 </html>
