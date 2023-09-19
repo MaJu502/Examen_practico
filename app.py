@@ -1,6 +1,5 @@
 from backend.backendModel import DataBaseModel
 from flask import *
-from urllib import request
 
 app = Flask(__name__, template_folder='static/templates', static_url_path='/static')
 app.config["EXPLAIN_TEMPLATE_LOADING"] = True
@@ -19,17 +18,35 @@ def manage_employees():
 def manage_departments():
     return render_template('manage_departments.html')
 
+def obtener_numero_departamento_id(dept):
+    return int(dept.dept_id.split('-')[1])
 
 @app.route('/listar_departamentos', methods=['GET'])
 def listar_departamentos():
     departamentos = model.listar_departamentos()
-    return render_template('listar_departamentos.html', departamentos=departamentos)
+    lista_departamentos_ordenados = sorted(departamentos, key=obtener_numero_departamento_id)
+    return render_template('listar_departamentos.html', departamentos=lista_departamentos_ordenados)
+
+@app.route('/listar_empleados_departamento', methods=['GET', 'POST'])
+def listar_empleados_departamento():
+    if request.method == 'POST':
+        dept_id = request.form['dept_id']
+        # Realiza el query para obtener los empleados del departamento con dept_id
+        empleados = model.listar_empleados_departamento(dept_id)  # Asegúrate de tener esta función en tu modelo
+
+        return render_template('listar_empleados_departamento.html', departamentos=empleados)
+
+    # Si la solicitud no es un POST, simplemente muestra la página sin resultados
+    return render_template('listar_empleados_departamento.html', departamentos=[])
+
+def obtener_numero_empleado_id(empleado):
+    return int(empleado.employee_id.split('-')[1])
 
 @app.route('/listar_empleados', methods=['GET'])
 def listar_empleados():
     empleados = model.listar_empleados()
-    print('\n\n\n\n>>>', empleados)
-    return render_template('listar_empleados.html', empleados=empleados)
+    lista_empleados_ordenados = sorted(empleados, key=obtener_numero_empleado_id)
+    return render_template('listar_empleados.html', empleados=lista_empleados_ordenados)
 
 @app.route('/crear_departamento', methods=['POST'])
 def crear_departamento():

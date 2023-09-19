@@ -74,3 +74,25 @@ th, td {
     padding: 8px;
     text-align: left;
 }
+
+form {
+    text-align: center; /* Centra los elementos del formulario horizontalmente */
+}
+
+label {
+    display: block; /* Muestra el label en una línea nueva */
+    margin-bottom: 10px; /* Espacio entre el label y el input box */
+}
+
+input[type="text"] {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 10px; /* Espaciado interior del input box */
+    margin: 0 auto; /* Centra el input box horizontalmente */
+    display: block; /* Muestra el input box en una línea nueva */
+}
+
+/* Estilos para el botón */
+input[type="submit"] {
+    margin-top: 10px; /* Espacio superior entre el input box y el botón */
+    display: block; /* Muestra el botón en una línea nueva */
+}

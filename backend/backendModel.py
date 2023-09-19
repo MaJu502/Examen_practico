@@ -31,6 +31,17 @@ class DataBaseModel:
             empleado = Empleado(employee_id, firstname, lastname, birthday, department_id)
             empleados.append(empleado)
         return empleados
+    
+    def listar_empleados_departamento(self,dep):
+        dep = dep.replace(" ", "")
+        self.cursor.execute("SELECT * FROM Empleado WHERE department_id LIKE '{}'".format(dep))
+        empleados = []
+        for row in self.cursor.fetchall():
+            print('-->',row)
+            employee_id, firstname, lastname, birthday, department_id = row
+            empleado = Empleado(employee_id, firstname, lastname, birthday, department_id)
+            empleados.append(empleado)
+        return empleados
 
     def crear_departamento(self, dept_id, nombre, description):
         try:

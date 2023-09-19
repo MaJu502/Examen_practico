@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar Empleados</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/listar_empleados.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/listar_departamentos.css') }}">
 </head>
 <body>
 
 <div class="sidenav">
     <a href="/">Regresar</a>
-    <a href="#">Listar Empleados</a>
-    <a href="#">Añadir Nuevo Empleado</a>
-    <a href="#">Actualizar Información de Empleado</a>
-    <a href="#">Eliminar Empleado</a>
+    <a href="#">Listar Departamentos</a>
+    <a href="#">Añadir Nuevo Departamento</a>
+    <a href="#">Actualizar Información de Departamento</a>
+    <a href="#">Eliminar Departamento</a>
 </div>
 
 <div class="content">
-    <h1>Listado de Empleados</h1>
+    <h1>Listado de Empleados Por Departamento</h1>
+    <form action="/listar_empleados_departamento" method="post">
+        <label for="dept_id">Ingrese el ID del Departamento:</label>
+        <input type="text" id="dept_id" name="dept_id">
+        <input type="submit" value="Buscar">
+    </form>
     <div class="table-container">
         <table>
             <thead>
