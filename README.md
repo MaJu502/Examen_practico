@@ -57,3 +57,13 @@ Siga estos pasos para configurar y ejecutar el proyecto en su entorno local:
            python app.py
             ``
     f. Abra su navegador y vaya a http://localhost:5000 para acceder a la aplicación.
+
+## Uso
+- Navegue por la aplicación para listar, crear, actualizar y eliminar empleados y departamentos.
+- Utilice las funciones de verificación para asegurarse de que los registros existan antes de realizar acciones de actualización o eliminación.
+
+## Contribuciones
+Si desea contribuir a este proyecto, abra un problema o envíe una solicitud de extracción. Estamos abiertos a mejoras y nuevas características.
+
+## Licencia
+Este proyecto está bajo la Licencia MIT - consulte el archivo LICENSE para más detalles.
